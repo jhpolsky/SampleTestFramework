@@ -20,7 +20,7 @@ public class AddNewMoviePageTest {
     private String title2 = "SuccesTest2";
     private String title3 = "SuccessTest3"
     private String releaseDate = "01/23/2021";
-    private String rating = "7.5";
+    private String rating = "4";
     private String baseUrl = "http://localhost/AddNewMoviePage.html";
     private String[] goodEntry2 = new String[]{title2, releaseDate, rating};
     private String[] goodEntry3 = new String[]{title3, releaseDate, rating};
