@@ -95,7 +95,7 @@ public class AddNewMoviePageTest {
         AddNewMoviePage.submitButton.click();
 
         // Assuming that the application UI provides a failure popup
-        WebElement failurePopup = driver.findElement(By.xpath("//*[@message=\"failureMessage\"]"));
+        WebElement failurePopup = driver.findElement(By.xpath("//*[@id=\"failureMessage\"]"));
         assertTrue(failurePopup.isDisplayed());
     }
 
