@@ -1,6 +1,7 @@
 # SampleTestFramework
 Project created using maven, Selenium, Java and JUnit
 
-Sample html page, page-object model, and set of Selenium Java tests
+Contains sample page-object model, test cases and html page for a hypothetical web page for entry of movies into a database
 
-tests located demo/src/test/java/com/example/demo/
+- Tests located in demo/src/test/java/com/example/demo/
+- html page located in SampleTestFramework/demo/
