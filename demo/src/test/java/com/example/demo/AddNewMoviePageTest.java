@@ -11,16 +11,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
+// Ideally, these tests are running against an internal VM using network authentication, so there is no need
+// for code to login and waste time during test creation/teardown
+
 public class AddNewMoviePageTest {
     private WebDriver driver;
     private AddNewMoviePage AddNewMoviePage;
 
     // Ideally, the test data are parametrized, but I hard-coded here for readability and simplicity's sake
     private String title1 = "SuccessTest1";
-    private String title2 = "SuccesTest2";
-    private String title3 = "SuccessTest3"
+    private String title2 = "SuccessTest2";
+    private String title3 = "SuccessTest3";
     private String releaseDate = "01/23/2021";
-    private String rating = "4";
+    private String rating = "7.5";
     private String baseUrl = "http://localhost/AddNewMoviePage.html";
     private String[] goodEntry2 = new String[]{title2, releaseDate, rating};
     private String[] goodEntry3 = new String[]{title3, releaseDate, rating};
@@ -35,8 +38,6 @@ public class AddNewMoviePageTest {
 
         // Assumes that object models and appropriate methods exist for the login and listview pages
         // Also assumes an Authorization class with login/logout methods
-        // (ideally, these tests are running against an internal VM using network authentication, so there is no need
-        // for code to login and waste time/compute power during test creation/teardown)
         AddNewLoginPage = new LoginPage(driver);
         Authorization.login();
 
@@ -71,12 +72,12 @@ public class AddNewMoviePageTest {
         AddNewMoviePage.ratingInput.sendKeys(rating);
         AddNewMoviePage.submitButton.click();
 
-        // Assuming there exists a class and method ListViewPage.RowExists() already created to verify existence of a row
+        // Assuming there is a class and method ListViewPage.RowExists() already created to verify existence of a row
         assertTrue(ListViewPage.RowExists(goodEntry2));
     }
 
     @Test
-    // Test that a user can successfully enter a new movie and a db entry is persisted
+    // Test that a user can successfully enter a new movie
     public void addNewMovieDbEntryExists() {
         AddNewMoviePage.movieTitleInput.sendKeys(title3);
         AddNewMoviePage.releaseDateInput.sendKeys(releaseDate);
@@ -94,8 +95,8 @@ public class AddNewMoviePageTest {
         AddNewMoviePage.ratingInput.sendKeys(rating);
         AddNewMoviePage.submitButton.click();
 
-        // Assuming that the application UI provides a failure popup
-        WebElement failurePopup = driver.findElement(By.xpath("//*[@id=\"failureMessage\"]"));
+        // Assuming that the application provides a failure popup
+        WebElement failurePopup = driver.findElement(By.xpath("//*[@message=\"failureMessage\"]"));
         assertTrue(failurePopup.isDisplayed());
     }
 
